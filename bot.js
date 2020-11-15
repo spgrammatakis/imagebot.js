@@ -10,7 +10,6 @@ client.on('ready', () => {
   });
   
   client.on('message', message => {
-    // If the message is '!rip'
     if (message.content === '!img') {
         message.channel.messages.fetch({ limit: 20 })
             .then(messages =>{
