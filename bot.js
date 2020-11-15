@@ -6,7 +6,7 @@ var https = require('https');
 client.login(token);
 
 client.on('ready', () => {
-    console.log('I am ready!');
+    console.log('Ready!');
   });
   
   client.on('message', message => {
