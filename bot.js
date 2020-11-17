@@ -4,22 +4,21 @@ const token = "";
 var fs = require("fs");
 var https = require('https');
 client.login(token);
-
+let iterator = 0;
 client.on('ready', () => {
-    console.log('Ready!');
+    console.log('I am ready!');
   });
-  
   client.on('message', message => {
     if (message.content === '!img') {
-        message.channel.messages.fetch({ limit: 20 })
+        message.channel.messages.fetch()
             .then(messages =>{
               messages.forEach(element =>{
                 var attachment = element.attachments.array();
                   attachment.forEach(value =>{
                   let string = value.url.substring(value.url.lastIndexOf("/")+1, value.url.length);
-                  console.log(string);
-                  let file = fs.createWriteStream("images/"+ string);
-                  const request = https.get(value.url, function(response) {
+                  let file = fs.createWriteStream("images/"+ iterator + string);
+                  iterator+=1;
+                  let request = https.get(value.url, function(response) {
                   response.pipe(file);
                   });
                   fs.appendFile('input.txt', value.url + "\n", function(err) {
